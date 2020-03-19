@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Time Sewing Calculator</h1>
+        <div id="result_part">KẾT QUẢ</div>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td scope="row">T (Sewing time - Thời gian may) =</td>
+                    <td id="result">Kq</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Calculation -->
+        <div id="input_part">NHẬP THÔNG TIN</div>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td scope="row">RPM (Tốc độ máy)</td>
+                    <td>
+                        <input id="rpm" type="text">
+                    </td>
+                </tr>
+                <tr>
+                    <td scope="row">ST/CM (Số mũi chỉ /1 cm)</td>
+                    <td>
+                        <input id="st_cm" type="text">
+                    </td>
+                </tr>
+                <tr>
+                    <td scope="row">CM (CHIỀU DÀI ĐƯỜNG MAY)</td>
+                    <td>
+                        <input id="cm" type="text">
+                    </td>
+                </tr>
+                <tr>
+                    <td scope="row">GT (mức độ)</td>
+                    <td>
+                        <input id="gui_ten" type="text">
+                    </td>
+                </tr>
+                <tr>
+                    <td scope="row">P (Độ chính xác lúc dừng)</td>
+                    <td>
+                        <input id="accuraracy" type="text">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button id="btn" type="button">Đồng ý</button>
+        <!-- Calculation -->
+        <div id="calculation_part">CALCULATION</div>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td scope="row">Degree of guiding and tensioning require when sewing</td>
+                    <td id="deg"></td>
+                </tr>
+                <tr>
+                    <td scope="row">Accuraracy of sewing or stopping</td>
+                    <td id="acc"></td>
+                </tr>
+                <tr>
+                    <td scope="row">Standard rate speed</td>
+                    <td id="stand_rs"></td>
+                </tr>
+                <tr>
+                    <td scope="row">Rate of Speed (Tỉ lệ tốc độ máy)</td>
+                    <td id="rs"></td>
+                </tr>
+                <tr>
+                    <td scope="row">HSF (High speed factor)</td>
+                    <td id="hsf"></td>
+                </tr>
+                <tr>
+                    <td scope="row">MST (Minimum sewing time - Thời gian may tối thiểu)</td>
+                    <td id="mst"></td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Information -->
+        <div id="info_part">Degree of guiding and tensioning require when sewing</div>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td scope="row">N</td>
+                    <td id="">1</td>
+                </tr>
+                <tr>
+                    <td scope="row">L</td>
+                    <td id="">1.1</td>
+                </tr>
+                <tr>
+                    <td scope="row">M</td>
+                    <td id="">1.2</td>
+                </tr>
+                <tr>
+                    <td scope="row">H</td>
+                    <td id="">1.4</td>
+                </tr>
+        </table>
+        <!-- Information -->
+        <div id="info_part">Accuraracy of sewing or stopping</div>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td scope="row">A</td>
+                    <td id="">0</td>
+                </tr>
+                <tr>
+                    <td scope="row">B</td>
+                    <td id="">9</td>
+                </tr>
+                <tr>
+                    <td scope="row">C</td>
+                    <td id="">20</td>
+                </tr>
+        </table>
+        <div id="info_part">Formular</div>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td scope="row">T (Sewing Time)=(MST x HSF x GT x CM) + 17 + P</td>
+                </tr>
+        </table>
+
+    </div>
+    <!-- <script type="text/javascript" src="script.js"> -->
+    <script>
+        btn.onclick = () => {
+            var rpm = document.getElementById("rpm").value;
+            var st_cm = document.getElementById("st_cm").value;
+            var cm = document.getElementById("cm").value;
+            var gui_ten = document.getElementById("gui_ten").value;
+            var accuraracy = document.getElementById("accuraracy").value;
+            // var deg = document.getElementById("acc").value;
+            // var stand_rs = document.getElementById("stand_rs").value;
+            // var rs = document.getElementById("rs").value;
+            // var hsf = document.getElementById("hsf").value;
+            // var mst = document.getElementById("mst").value;
+            // console.log(rpm)
+            var mst = st_cm/ (rpm * 0.0006);
+            // console.log(mst)
+            function hsf() {
+                if (rpm / st_cm >= 455) {
+                    var hsf1 = ((4.5 - mst)*(4.5 - mst) / 100) + 1;
+                    return hsf1
+                }
+                else {
+                    return hsf1 = 1
+                }
+            }
+            // console.log(hsf())
+            function gt(){
+                if(gui_ten=="n"){
+                    var gt = 1;
+                    return gt;
+                }
+                else if(gui_ten=="l"){
+                    var gt = 1.1;
+                    return gt;
+                }
+                else if(gui_ten=="m"){
+                    var gt = 1.2;
+                    return gt;
+                }
+                else{
+                    var gt = 1.4;
+                    return gt;
+                }
+            }
+            console.log(gt())
+        }
+    </script>
+</body>
+
+</html>
